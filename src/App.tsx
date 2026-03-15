@@ -6,5 +6,5 @@ export default function App() {
         <h1 className="text-2xl italic">Project Template</h1>
       </div>
     </div>
-  )
+  );
 }
