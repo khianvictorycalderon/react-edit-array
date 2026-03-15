@@ -58,7 +58,7 @@ export default function App() {
           <div key={`${item.id}-${index}`} className="flex flex-row gap-4 items-center">
             {item.isEditing ? (
               <>
-                <input type="text" value={item.name} onChange={(e) => handleInputOnChange(item.id, e.target.value)}/>
+                <input type="text" value={item.name} onChange={(e) => handleInputOnChange(item.id, e.target.value)} />
               </>
             ) : (
               <>
