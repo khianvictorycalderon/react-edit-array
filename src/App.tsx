@@ -48,7 +48,12 @@ export default function App() {
 
   const handleInputOnChange = async(id: number, value: string) => {
     setUsers(prev => prev.map(item => item.id === id ? { ...item, name: value } : item));
-    // Simulating save to database
+  }
+
+  const handleEditingDone = async(action: "save" | "cancel", id: number) => {
+    
+    // Simulating fetch or axios to backend
+    // Logic here...
   }
 
   return (
@@ -59,8 +64,8 @@ export default function App() {
             {item.isEditing ? (
               <>
                 <input className="bg-white p-2 rounded-md" type="text" value={item.name} onChange={(e) => handleInputOnChange(item.id, e.target.value)} />
-                <button className="rounded-md px-6 py-2 bg-green-600 hover:bg-green-500 text-white cursor-pointer transition duration-300">Save</button>
-                <button className="rounded-md px-6 py-2 bg-red-600 hover:bg-red-500 text-white cursor-pointer transition duration-300">Cancel</button>
+                <button onClick={() => handleEditingDone("save", item.id)} className="rounded-md px-6 py-2 bg-green-600 hover:bg-green-500 text-white cursor-pointer transition duration-300">Save</button>
+                <button onClick={() => handleEditingDone("cancel", item.id)} className="rounded-md px-6 py-2 bg-red-600 hover:bg-red-500 text-white cursor-pointer transition duration-300">Cancel</button>
               </>
             ) : (
               <>
