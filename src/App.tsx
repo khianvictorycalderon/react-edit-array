@@ -48,6 +48,7 @@ export default function App() {
 
   const handleInputOnChange = async(id: number, value: string) => {
     setUsers(prev => prev.map(item => item.id === id ? { ...item, name: value } : item));
+    // Simulating save to database
   }
 
   return (
