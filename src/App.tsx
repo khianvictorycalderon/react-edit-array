@@ -52,6 +52,23 @@ export default function App() {
 
   const handleEditingDone = async(action: "save" | "cancel", id: number) => {
     
+    setUsers(prev =>
+      prev.map(user => {
+        if (user.id != id) return user;
+
+        if (action === "save") {
+          return { ...user, isEditing: false }
+        }
+
+        if (action === "cancel") {
+          const original = MOCK_DATA.find(u => u.id === id)!;
+          return { ...original, isEditing: false }
+        }
+
+        return user;
+      })
+    );
+
     // Simulating fetch or axios to backend
     // Logic here...
   }
