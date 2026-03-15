@@ -42,17 +42,30 @@ export default function App() {
   // Simulating fetched Data
   const [users, setUsers] = useState<EditingMockDataProps[]>(EDITING_MOCK_DATA); // For temporary UI display
 
+  const handleEditingMode = async(id: number) => {
+    setUsers(prev => prev.map(item => item.id === id ? { ...item, isEditing: true} : item));
+  }
+
   return (
     <div className="flex min-h-screen w-screen items-center justify-center bg-neutral-300 text-neutral-800">
       <div className="flex flex-col gap-2">
         {users.map((item, index) => (
-          <div className="flex flex-row gap-4 items-center">
-            <p className="font-semibold" key={`${item.id}-${index}`}>
-              {item.name}
-            </p>
-            <button className="rounded-md px-6 py-2 bg-blue-600 text-white cursor-pointer hover:bg-blue-500 transition duration-300">
-              Edit
-            </button>
+          <div key={`${item.id}-${index}`} className="flex flex-row gap-4 items-center">
+            {item.isEditing ? (
+              <></>
+            ) : (
+              <>
+                <p className="font-semibold">
+                  {item.name}
+                </p>
+                <button 
+                  onClick={() => handleEditingMode(item.id)}
+                  className="rounded-md px-6 py-2 bg-blue-600 text-white cursor-pointer hover:bg-blue-500 transition duration-300"
+                  >
+                  Edit
+                </button>
+              </>
+            )}
           </div>
         ))}
       </div>
