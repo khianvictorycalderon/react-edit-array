@@ -1,6 +1,13 @@
+import { useState } from "react";
+
 interface MockDataProps {
   id: number;
   name: string;
+}
+
+// This is for frontend only
+interface EditingMockDataProps extends MockDataProps {
+  isEditing: boolean;
 }
 
 const MOCK_DATA: MockDataProps[] = [
@@ -26,7 +33,15 @@ const MOCK_DATA: MockDataProps[] = [
   },
 ];
 
+// Add the isEditing to each
+const EDITING_MOCK_DATA: EditingMockDataProps[] = MOCK_DATA.map(item => ({ ...item, isEditing: false }));
+
 export default function App() {
+
+  // Simulating fetched Data
+  const [fetchedData, setFetchedData] = useState<MockDataProps[]>(MOCK_DATA);
+  const [editingData, setEditingData] = useState<EditingMockDataProps[]>(EDITING_MOCK_DATA); // For temporary UI display
+
   return (
     <div className="flex min-h-screen w-screen items-center justify-center bg-neutral-300 text-neutral-800">
       <div className="text-center">
