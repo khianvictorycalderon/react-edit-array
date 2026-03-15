@@ -10,6 +10,7 @@ interface EditingMockDataProps extends MockDataProps {
   isEditing: boolean;
 }
 
+// Sample fetched data from server
 const MOCK_DATA: MockDataProps[] = [
   {
     id: 712489,
@@ -33,20 +34,27 @@ const MOCK_DATA: MockDataProps[] = [
   },
 ];
 
-// Add the isEditing to each
+// Add the { isEditing: false } to each, so it can be editted individually
 const EDITING_MOCK_DATA: EditingMockDataProps[] = MOCK_DATA.map(item => ({ ...item, isEditing: false }));
 
 export default function App() {
 
   // Simulating fetched Data
-  const [fetchedData, setFetchedData] = useState<MockDataProps[]>(MOCK_DATA);
-  const [editingData, setEditingData] = useState<EditingMockDataProps[]>(EDITING_MOCK_DATA); // For temporary UI display
+  const [users, setUsers] = useState<EditingMockDataProps[]>(EDITING_MOCK_DATA); // For temporary UI display
 
   return (
     <div className="flex min-h-screen w-screen items-center justify-center bg-neutral-300 text-neutral-800">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold">Vite React + Tailwind + React Hook Form</h1>
-        <h1 className="text-2xl italic">Project Template</h1>
+      <div className="flex flex-col gap-2">
+        {users.map((item, index) => (
+          <div className="flex flex-row gap-4 items-center">
+            <p className="font-semibold" key={`${item.id}-${index}`}>
+              {item.name}
+            </p>
+            <button className="rounded-md px-6 py-2 bg-blue-600 text-white cursor-pointer hover:bg-blue-500 transition duration-300">
+              Edit
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );
