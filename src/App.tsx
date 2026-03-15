@@ -58,7 +58,9 @@ export default function App() {
           <div key={`${item.id}-${index}`} className="flex flex-row gap-4 items-center">
             {item.isEditing ? (
               <>
-                <input type="text" value={item.name} onChange={(e) => handleInputOnChange(item.id, e.target.value)} />
+                <input className="bg-white p-2 rounded-md" type="text" value={item.name} onChange={(e) => handleInputOnChange(item.id, e.target.value)} />
+                <button className="rounded-md px-6 py-2 bg-green-600 hover:bg-green-500 text-white cursor-pointer transition duration-300">Save</button>
+                <button className="rounded-md px-6 py-2 bg-red-600 hover:bg-red-500 text-white cursor-pointer transition duration-300">Cancel</button>
               </>
             ) : (
               <>
