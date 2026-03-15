@@ -46,13 +46,19 @@ export default function App() {
     setUsers(prev => prev.map(item => item.id === id ? { ...item, isEditing: true} : item));
   }
 
+  const handleInputOnChange = async(id: number, value: string) => {
+    setUsers(prev => prev.map(item => item.id === id ? { ...item, name: value } : item));
+  }
+
   return (
     <div className="flex min-h-screen w-screen items-center justify-center bg-neutral-300 text-neutral-800">
       <div className="flex flex-col gap-2">
         {users.map((item, index) => (
           <div key={`${item.id}-${index}`} className="flex flex-row gap-4 items-center">
             {item.isEditing ? (
-              <></>
+              <>
+                <input type="text" value={item.name} onChange={(e) => handleInputOnChange(item.id, e.target.value)}/>
+              </>
             ) : (
               <>
                 <p className="font-semibold">
